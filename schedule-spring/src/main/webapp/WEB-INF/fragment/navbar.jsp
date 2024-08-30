@@ -23,6 +23,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/join">회원가입</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/login">로그인</a>
+                </li>
             </ul>
         </div>
     </div>
