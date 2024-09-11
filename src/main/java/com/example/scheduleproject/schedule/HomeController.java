@@ -1,4 +1,4 @@
-package com.example.scheduleproject.home;
+package com.example.scheduleproject.schedule;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
