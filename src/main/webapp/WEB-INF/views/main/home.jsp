@@ -14,8 +14,19 @@
 </head>
 <body>
 <c:import url="/WEB-INF/fragment/navbar.jsp"/>
+    <div id='calendar'></div>
 
-homeddd
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          locale: 'ko',  // 한국어 설정
+          initialView: 'dayGridMonth',  // 기본 보기
+          events: '/events'  // 이벤트 데이터를 가져올 URL
+        });
+        calendar.render();
+      });
+    </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"
         integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ=="
