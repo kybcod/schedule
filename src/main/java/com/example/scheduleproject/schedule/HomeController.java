@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Description;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequiredArgsConstructor
@@ -20,6 +21,7 @@ public class HomeController {
     }
 
     @Description("캘린더 일정 추가하기")
+    @PostMapping("/events")
     public void insert(){
         scheduleService.insertSchedule();
     }
