@@ -28,6 +28,35 @@
       });
     </script>
 
+<div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="eventModalLabel">일정 추가</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="eventForm">
+                    <div class="mb-3">
+                        <label for="eventTitle" class="form-label">일정 제목</label>
+                        <input type="text" class="form-control" id="eventTitle" name="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="eventDesc" class="form-label">일정 설명</label>
+                        <textarea class="form-control" id="eventDesc" name="description"></textarea>
+                    </div>
+                    <input type="hidden" id="eventDate" name="date">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                <button type="button" class="btn btn-primary" id="saveEvent">추가</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"
         integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
