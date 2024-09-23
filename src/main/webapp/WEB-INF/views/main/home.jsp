@@ -14,20 +14,10 @@
 </head>
 <body>
 <c:import url="/WEB-INF/fragment/navbar.jsp"/>
-    <div id='calendar'></div>
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          locale: 'ko',  // 한국어 설정
-          initialView: 'dayGridMonth',  // 기본 보기
-          events: '/events'  // 이벤트 데이터를 가져올 URL
-        });
-        calendar.render();
-      });
-    </script>
 
+<div id='calendar'></div> <!-- FullCalendar가 그려질 곳 -->
+
+<!-- 모달 추가 -->
 <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -56,6 +46,66 @@
     </div>
 </div>
 
+<!-- FullCalendar 및 Bootstrap JS -->
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- Axios CDN -->
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      locale: 'ko',
+      initialView: 'dayGridMonth',
+      events: '/events',
+      dateClick: function(info) {
+        // 모달 열기
+        var eventDate = info.dateStr;  // 클릭한 날짜 가져오기
+        document.getElementById('eventDate').value = eventDate;  // 숨겨진 필드에 날짜 저장
+        var eventModal = new bootstrap.Modal(document.getElementById('eventModal'), {});
+        eventModal.show();
+      }
+    });
+    calendar.render();
+
+    // 일정 추가 버튼 클릭 시 폼 데이터 전송
+    document.getElementById('saveEvent').addEventListener('click', function() {
+      var title = document.getElementById('eventTitle').value;
+      var description = document.getElementById('eventDesc').value;
+      var date = document.getElementById('eventDate').value;
+
+      // 입력 검증
+      if (title.trim() === "") {
+        alert("제목을 입력해주세요.");
+        return;
+      }
+
+      // 서버로 데이터 전송 (Axios 요청 사용)
+      var eventData = {
+        title: title,
+        description: description,
+        start: date
+      };
+
+      axios.post('/addEvent', eventData)
+        .then(function (response) {
+          if (response.data.success) {
+            calendar.addEvent({
+              title: title,
+              start: date
+            });
+            document.getElementById('eventForm').reset();  // 폼 리셋
+            var eventModal = bootstrap.Modal.getInstance(document.getElementById('eventModal'));
+            eventModal.hide();  // 모달 닫기
+          } else {
+            alert("일정 추가 중 오류가 발생했습니다.");
+          }
+        })
+        .catch(function (error) {
+          console.error('Error:', error);
+        });
+    });
+  });
+</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"
         integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ=="
