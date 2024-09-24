@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequiredArgsConstructor
-public class HomeController {
+public class ScheduleController {
 
     private final MemberService memberService;
     private final ScheduleService scheduleService;
@@ -21,8 +21,8 @@ public class HomeController {
     }
 
     @Description("캘린더 일정 추가하기")
-    @PostMapping("/events")
-    public void insert(){
-        scheduleService.insertSchedule();
+    @PostMapping("/addEvent")
+    public void insert(Schedule schedule){
+        scheduleService.insertSchedule(schedule);
     }
 }

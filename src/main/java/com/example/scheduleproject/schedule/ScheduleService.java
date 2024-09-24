@@ -8,7 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(rollbackFor = Exception.class)
 @RequiredArgsConstructor
 public class ScheduleService {
-    public void insertSchedule() {
-        // 일정 추가
+
+    private final ScheduleMapper scheduleMapper;
+
+
+    public void insertSchedule(Schedule schedule) {
+        scheduleMapper.save(schedule);
     }
 }

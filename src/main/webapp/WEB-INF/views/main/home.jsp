@@ -79,7 +79,7 @@
         return;
       }
 
-      // 서버로 데이터 전송 (Axios 요청 사용)
+      // 서버로 데이터 전송
       var eventData = {
         title: title,
         description: description,
