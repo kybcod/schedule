@@ -8,7 +8,7 @@ CREATE TABLE member(
     inserted DATETIME NOT NULL DEFAULT NOW()
 );
 
-CREATE TABLE schedule(
+CREATE TABLE plan(
     id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(100) NOT NULL,
     description VARCHAR(500) NOT NULL ,
