@@ -9,10 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class ScheduleService {
 
-    private final ScheduleMapper scheduleMapper;
-
+    private final ScheduleRepository scheduleRepository;
 
     public void insertSchedule(Schedule schedule) {
-        scheduleMapper.save(schedule);
+        scheduleRepository.save(schedule);
     }
 }

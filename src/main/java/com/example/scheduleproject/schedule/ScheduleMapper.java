@@ -1,14 +1,10 @@
 package com.example.scheduleproject.schedule;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
-public interface ScheduleMapper {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-    @Insert("""
-            INSERT INTO schedule (title, description, inserted)
-            VALUES (#{title}, #{description}, #{inserted})
-            """)
-    void save(Schedule schedule);
+@Repository
+interface ScheduleRepository extends JpaRepository<Schedule, Integer> {
+
 }
