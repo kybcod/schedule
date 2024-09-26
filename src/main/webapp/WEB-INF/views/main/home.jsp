@@ -15,7 +15,7 @@
 <body>
 <c:import url="/WEB-INF/fragment/navbar.jsp"/>
 
-<div id='calendar'></div> <!-- FullCalendar가 그려질 곳 -->
+<div id='calendar'></div>
 
 <!-- 모달 추가 -->
 <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
@@ -46,7 +46,7 @@
     </div>
 </div>
 
-<!-- FullCalendar 및 Bootstrap JS -->
+<!-- FullCalendar -->
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- Axios CDN -->
 
@@ -57,6 +57,7 @@
       locale: 'ko',
       initialView: 'dayGridMonth',
       events: '/events',
+      aspectRatio: 1.5,
       dateClick: function(info) {
         // 모달 열기
         var eventDate = info.dateStr;  // 클릭한 날짜 가져오기
